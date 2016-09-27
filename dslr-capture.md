@@ -19,6 +19,7 @@ For our example, our subject will be the lunar eclipse that happened on 2014/4/1
 
 # Some background information
 
+
 ## Understanding your subject
 
 The moon is an unassuming subject.  We see it every night.  Our eyes have a significant amount more dynamic range than your average camera (film or digital) however.
@@ -34,6 +35,16 @@ Oh, and the moon moves in an arc across the sky, faster than you think.  (look a
 Now, I suppose if you had a clock drive and telescope with a DSLR adapter, you could indeed fill the frame with the moon, set your camera to Aperture Priority, enable the clock drive, and then follow the rest of the software only instructions.  But then again, if you have that setup, you don't need this tutorial, do you? :)
 
 ## Understanding your camera
+
+TL;DR: Watch this [fantastic video](https://www.youtube.com/watch?v=E7VIWhchVBY) to get an idea of how to set up your camera for timelapse.  There's some fantastic tips in there!
+
+TL;DW: 
+1. Disable all automatic functions (focus, image stabilization, lcd preview, power off timeout).
+2. Shoot manual if at all possible.
+3. Shoot raw
+4. Protect your highlights
+5. Use mirror lock up for long exposure (night)
+6. Use live-view and zoom to make sure your focus point is tack-sharp.
 
 Your digital SLR, is capable of producing some very fine photographs.  But, as I said earlier, the dynamic range (difference between brightest and darkest picture it can capture) is significantly smaller than what the human eye can perceive.  Monitors we use to display digital images have the same problem.  As such, your camera is simply unable to cope with the brightness of the moon, and darkness of the sky, at the same time.  You adjust your exposure to favor one or the other.  In our case, we chose to underexpose and lose the sky details to focus on the moon and its contrast.
 
