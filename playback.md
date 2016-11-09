@@ -40,7 +40,9 @@ This is an NVidia inspired API for accelerating video playback on Linux/UNIX env
 
 It is generally well supported on Intel cards (F/LOSS), NVidia cards (Closed Source only).  Not sure about AMD cards.
 
-It appears to be limited to only MP4/H264 for the time being.  The driver README states that Feature F was supposed to add VP8/VP9 support, but the GTX1060 (3GB) has featureset H (they're additive) and only MP4/H264 appeared to be accelerated via VDPAU in `mplayer`.
+It appears to be limited to only MP4/H264 for the time being.  [This site](https://devtalk.nvidia.com/default/topic/941363/linux/vdpau-and-vp9/) says Feature F was supposed to add VP8/VP9 support, but the GTX1060 (3GB) has featureset H (they're additive) and only MP4/H264 appeared to be accelerated via VDPAU in `mplayer`.
+
+Verified by the [README](https://www.nvidia.com/object/linux_readme_install.html) in Appendix G.
 
 ## Recommendations
 
