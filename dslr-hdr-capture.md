@@ -214,14 +214,14 @@ The code for this part looks a little something like this:
 ```
 cd ~/your/project
 mkdir aligned
-ls -1 developed/*.tif | xargs -P $(grep ^processor /proc/cpuinfo | wc -l) -n3 ~/bin/align_stack.sh
+ls -1 developed/*.tif | xargs -P $(nproc) -n3 ~/bin/align_stack.sh
 
 ```
 
 What the above means:
 1. `mkdir aligned`: make the directory for the aligned images.
 2. `ls -1 developed/*.tif`: Output an ordered list of the TIF files
-3. `$(grep ^processor /proc/cpuinfo | wc -l)`: Outputs the number of available CPUs (needed for the -P flag to `xargs`)
+3. `$(nproc)`: Outputs the number of available CPUs (needed for the -P flag to `xargs`)
 4. `xargs -P<NUMBER> -n3`: Run the following command using 3 lines of the file list as input, and run up to <NUMBER> such commands at once, until the input is exhausted.
 5. `align_stack.sh`: align the 3 images. This wrapper script is reproduced below to help work around a limitation in `align_image_stack` that causes filenames to collide.  This script is reproduced below.
 
@@ -236,7 +236,7 @@ Much like the align process, the enfuse process takes a little bit of trickery t
 ```
 cd ~/your/project
 mkdir enfused
-ls -1 aligned/*.tif | xargs -P $(grep ^processor /proc/cpuinfo | wc -l) -n3 ~/bin/enfuse_stack.sh
+ls -1 aligned/*.tif | xargs -P $(nproc) -n3 ~/bin/enfuse_stack.sh
 ```
 
 The steps above look eerily simmilar to the align step, because working with 3 files at once is a PITA. Thankfully, enfuse's output options are much easier to deal with.

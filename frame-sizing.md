@@ -57,9 +57,9 @@ You should do this same procedure for each size you intend to encode for:
 
 1. cd into the directory with the original resolution frames
 2. make a directory called resized2k (or something to that effect that includes the output resolution)
-3. `ls -1 *.png | xargs -n1 -P $(grep ^processor /proc/cpuinfo | wc -l) -iblah convert blah -resize 1920x1280 -gravity Center -crop 1920x1080+0-105 +repage resized2k/blah`
+3. `ls -1 *.png | xargs -n1 -P $(nproc) -iblah convert blah -resize 1920x1280 -gravity Center -crop 1920x1080+0-105 +repage resized2k/blah`
    1. where: `ls -1 *.png` creates a list of files, one line per file.
-   2. where: `grep ^processor /proc/cpuinfo | wc -l` will tell you how many processors you have on your system available to resize images.
+   2. where: `nproc` will tell you how many processors you have on your system available to resize images.
    3. where: `xargs -n1 -P4 -iblah` will run one convert command per file, 4 jobs at a time. (Assuming the putput of the previous script was 4)
    4. where: `convert blah -resize 1920x1280 -gravity Center -crop 1920x1080+0+0 +repage resized2k/blah` will resize the original frame down, and crop the excess, outputting it in another directory, so as not to overwrite the original.
       1. The 1920x1280 resolution comes from the resizing part in Gimp, but keeping the aspect ratio.
