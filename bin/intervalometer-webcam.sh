@@ -18,11 +18,19 @@ for binary in fswebcam uvcdynctrl; do
                 logger "Unable to find $binary!"
                 FAILCOUNT=$(( $FAILCOUNT + 1 ))
         fi
-        if [[ $FAILCOUNT -gt 0 ]]; then
-                logger "exiting..."
-                exit 1
-        fi
 done
+
+# Check for appropriate groups
+id -a | egrep -o 'groups=([[:alnum:]]|[[:punct:]])+' --color=no | grep -q video
+if [[ $? != 0 ]]; then
+	logger "$USER not in group video."
+	FAILCOUNT=$(( $FAILCOUNT + 1 ))
+fi
+
+if [[ $FAILCOUNT -gt 0 ]]; then
+	logger "exiting..."
+	exit 1
+fi
 
 # Create destination directory
 if [[ ! -d "${PHOTO_LOCATION}" ]]; then
