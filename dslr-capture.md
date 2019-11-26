@@ -19,7 +19,6 @@ For our example, our subject will be the lunar eclipse that happened on 2014/4/1
 
 # Some background information
 
-
 ## Understanding your subject
 
 The moon is an unassuming subject.  We see it every night.  Our eyes have a significant amount more dynamic range than your average camera (film or digital) however.
@@ -38,7 +37,7 @@ Now, I suppose if you had a clock drive and telescope with a DSLR adapter, you c
 
 TL;DR: Watch this [fantastic video](https://www.youtube.com/watch?v=E7VIWhchVBY) to get an idea of how to set up your camera for timelapse.  There's some fantastic tips in there!
 
-TL;DW: 
+TL;DW:
 1. Disable all automatic functions (focus, image stabilization, lcd preview, power off timeout).
 2. Shoot manual if at all possible.
 3. Shoot raw
@@ -70,7 +69,7 @@ Ultimately, for your first time, JPEG is probably a better choice, and then RAW 
 
 Lastly, a feature not available to RAW mode shooters (at least on older cameras), is in-camera dark-frame noise reduction.  What this will do, is capture two frames: one at your requested exposure settings, and another without lifting the mirror, with the same settings otherwise.  This second frame is called a dark frame, and will be useful to help subtract sensor noise from the original image.  It's important to note that noise reduction will *double your exposure time* (the dark frame has the same exposure time!), so take that into account with your intervalometer settings.
 
-## Understanding time lapse.
+## Understanding time lapse
 
 The whole point of time lapse is to take a long-running/slow-moving event, and compress the time frame to show the viewer something they may otherwise never notice.  The basic process is to take a single frame every so many seconds/minutes/hours/(even days!) depending on the motion velocity of what you're trying to capture.
 
@@ -112,6 +111,7 @@ gphoto2, the command line client for libgphoto, as we use it here, effectively a
 9. Disable LCD preview on your DSLR.
 
 ## Intervalometer code
+
 Really, this code should be pretty simple.  Here's a short implementation in bash.  The basic premise is:
 
 Calculate how many frames you need to take, and how long to sleep between frames. Then pass those photos to gphoto2 and let it's built-in timer do the work for you.
@@ -121,18 +121,22 @@ See my [intervalometer dslr](bin/intervalometer-dslr.sh) script.
 # On-site preparations
 
 ## Location
+
 Unless you're either naive, stupid, or willing to risk losing your gear, you'll want to be near your equipment.  Home is the easiest place to start, since you have some physical security and mains power available.  That's what we did to get the basics down for this project.
 
 ### Power sidebar
-Should you decide to be away from home, the most important thing will be strong batteries and long life.  Your camera's batteries are likely to last longer than your computer.  In our case, our single-battery EOS-20D was snapping away for 4 hours (2 shots per minute) and still had a nearly full battery.  Longer series of exposures will benefit from a battery grip with 2 batteries.  Laptops with 9 cells (and/or two batteries!) are ideal for capture.  Use a power inverter with your car if you must, but beware drawing your car battery below 80% charge!
+
+Should you decide to be away from home, the most important thing will be strong batteries and long life.  Your camera's batteries are likely to last longer than your computer.  In our case, our single-battery EOS-20D was snapping away for 4 hours (2 shots per minute) and still had a nearly full battery.  Longer series of exposures will benefit from a battery grip with 2 batteries.  Laptops with 9 cells (and/or two batteries!) are ideal for capture.  Use a power inverter with your car if you must, but beware drawing your car battery below 80% charge. [See here](https://www.lifewire.com/car-batteries-are-made-to-die-534765) for why.
 
 ### Environmental effects sidebar
+
 If it's cold out, you may want to cover your camera (and laptop) with a small dish cloth or something similar, to help mop up any condensation.  Additionally, your lens may suffer from condensation.  There are a variety of ways of solving this particular problem.  They range from grease like substances to oily sprays, etc.  While I have no opinion or recommendation on which of these to use, I will offer than you're better off first mounting an appropriately sized UV filter on your lens first.  You can feel free to use the least expensive one, since UV light during the evening isn't neccessarily going to be a problem.  In the day time, using a high quality UV filter is advised.
 
 Should you be shooting through window glass, or similar obstructions, a circular polarizing filter is advised.  In addition, it is advised to frame some kind of light block around the aperture of your lens to block any possible inside light sources from causing any glare.  A circular (not bayonet!) lens hood will suffice, as long as the hood is pressed directly against the glass with no light leaks.  (probably not possible unless you're shooting through a sky-light for this task.)
 
 ## Camera
-1. Set up your sturdy tripod, including any extra weighting.
+
+1. Set up your sturdy tripod, including any extra weights.
 2. Mount your camera the tripod.
 3. Make sure your camera is correctly naming images using increasing sequence numbers.
    1. This is the default on Canon cameras, if you haven't messed with this setting.
@@ -147,7 +151,7 @@ Should you be shooting through window glass, or similar obstructions, a circular
    4. Expose, note the shutter speed and f/stop
    5. Assuming it looks good, these are your settings.
       1. If things look too bright, adjust your ISO sensitivity downward.
-      3. Still too bright?  Stop-down, one stop at a time.
+      2. Still too bright?  Stop-down, one stop at a time.
    6. Ideally, you want your exposure time to be relatively short, between 1/500 and 1/10 second.
 7. Once dialed in, to save battery power, disable LCD preview
 8. Zoom out to as wide an angle as you can
@@ -160,57 +164,44 @@ Should you be shooting through window glass, or similar obstructions, a circular
 Once you're on-site and your camera rig is set up, it's time to either auto-time or otherwise execute the intervalometer script to gather your source images.
 
 ## Executing the intervalometer
+
 The nice thing about the script above, is that you can either execute it directly when you're ready to start, or you can execute it at a specific time using cron or at.
 
 See crontab(5) for how to properly set up your user-level crontab entry to execute a script at a specific time, but the gist is that it will look something like this:
 ```0 0 * * *	/home/you/bin/intervalometer.sh```
 
 # Post processing your RAW images
+
 *note:* JPEG users can probably skip this section, I hope you set your camera up well, because fixing your exposure now is a right PITA.
 
 ## Software you'll need
+
 At this point, you're going to start processing RAW images.  For this, you'll need some additional interactive tools to help you get your images right.
 
 There are a variety of RAW workflow tools available to you in Fedora specifically, and GNU Linux in general.  A non-exhaustive list here:
-* [rawtherapee](http://www.rawtherapee.com/) (don't like the UI, but darktable makes all my images way too dark and green.)
-* [darktable](https://www.darktable.org/) (Great UI, lots of power, but the initial curves turn my images very dark and green so it's practically useless to me.)
-* [rawstudio](https://github.com/rawstudio/rawstudio) (old site: https://rawstudio.org/)
+
+* [darktable](https://www.darktable.org/)
+* [rawtherapee](http://www.rawtherapee.com/)
 * [ufraw](http://ufraw.sourceforge.net) (Can be used inside of gimp and cinepaint as a plugin unlike the others on this list)
 
-I use `rawstudio` for my interactive workflow, because it's pretty easy to grasp, supports a wide variety of cameras (each camera's RAW format is slightly different..  Boo.) and has pretty amazing batch file capabilities.
+I use `darktable` for my interactive workflow.  It's got a lot of power and processing available to you.  It supports OpenCL acceleration, which is handy when constantly tweaking controls on high megapixel images.
 
-Rawstudio does a few things _very right_, and the first most useful thing, is its copy/paste support.  The second, is its batch export capability.  Lastly, it's fully multi-threaded, making it work across all your CPU's
+Darktable does a few things _very right_, and the first most useful thing, is its copy/paste support.  The second, is its batch export capability.  Unfortunately, multi-threading is not it's strong suit, so be aware of that.
 
-## Raw Studio (Interactive part)
-1. Open rawstudio
-2. Choose 'open directory'
-3. Point it to the directory full of RAW files.
-4. Glance over all of your images, noting:
+## Dark Table (Interactive part)
+
+1. Open darktable
+2. Import your directory of images.
+   1. See [basic workflow here](https://www.darktable.org/usermanual/en/darktable_basic_workflow.html) for how-to.
+3. Glance over all of your images, noting:
    1. Did you get the imagery you needed?
    2. Where are the transition points for full shadow, and not?
-5. Adjust the first image of your set so it looks good.
-6. from the menu: edit -> copy settings.
-   1. It's OK to leave all of the check boxes selected here.
-8. From the thumbnail strip, select the next image in the sequence.
-9. In the thumbnail strip, move the slider over to the last image that needs those same settings (aka: the first transition point)
-10. Holding the shift key, select that image
-   1. You should see a bunch of light grey rectangles around your images, indicating they've been selected.
-11. from the menu: edit -> paste settings
-12. Repeat the above settings for the next two points:
-   1. full shadow
-   2. not full shadow
-13. Now comes the hard part, the transition points.
-   1. Decide how long in time you want each transition to take (I would argue no longer than 1s)
-   2. Depending on your frame rate (I'm assuming 30fps) start hand-morphing the settings (mostly just exposure) from frame to frame for the transition states.
-14. In the thumbnail strip, press ctrl-A to select all of your frames
-15. Press the Insert key to insert them into the batch queue.
-16. Click the "Batch" tab on the right hand side.
+4. Adjust the first image of your set so it looks good in the darkroom pane of Darktable.
+5. Follow [these instructions](https://photo.stackexchange.com/questions/39055/how-to-batch-edit-a-collection-of-raw-files-in-darktable) to copy the history stack and paste it across all your other images in lighttable view.
+6. Follow [these instructions](https://www.darktable.org/usermanual/en/exporting_images.html) to export the batch of images.
    1. Choose an output directory (I use a separate directory from my input photos)
    2. Choose the PNG format (mencoder won't accept TIFF as an input file format)
    3. Change the output filename format to just %f, you shouldn't need an additional serial increment on top of what your camera gives you.
-17. Under 'edit output settings'.
-   1. I leave the color profile settings up to you here.
-   2. Untick the copy exif metadata
-18. From the Batch menu, choose 'start' (or choose 'start' from the right hand pane)
+   4. Change your output image size if you wish.
 
 Once you've exported all of your frames to their 8bit/channel PNG format, in their native resolution, you still need to correctly crop and resize each frame.  See my guide on [resizing and cropping](frame-sizing.md) for the next step.
