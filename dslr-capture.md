@@ -45,6 +45,16 @@ TL;DW:
 5. Use mirror lock up for long exposure (night)
 6. Use live-view and zoom to make sure your focus point is tack-sharp.
 
+TL;DR: Watch this [fantastic video](https://www.youtube.com/watch?v=E7VIWhchVBY) to get an idea of how to set up your camera for timelapse.  There's some fantastic tips in there!
+
+TL;DW:
+1. Disable all automatic functions (focus, image stabilization, lcd preview, power off timeout).
+2. Shoot manual if at all possible.
+3. Shoot raw
+4. Protect your highlights
+5. Use mirror lock up for long exposure (night)
+6. Use live-view and zoom to make sure your focus point is tack-sharp.
+
 Your digital SLR, is capable of producing some very fine photographs.  But, as I said earlier, the dynamic range (difference between brightest and darkest picture it can capture) is significantly smaller than what the human eye can perceive.  Monitors we use to display digital images have the same problem.  As such, your camera is simply unable to cope with the brightness of the moon, and darkness of the sky, at the same time.  You adjust your exposure to favor one or the other.  In our case, we chose to underexpose and lose the sky details to focus on the moon and its contrast.
 
 A DSLR's manual exposure mode is the best way to handle this.  It permits you to focus your camera at a single setting and fixed position.  The importance of this cannot be understated: nothing says "consumer" than auto-iris effects seen in home movies when a lighting change is detected.  Fixing the exposure (shutter, f/stop and ISO sensitivity) over the entire length of the shot will ensure this doesn't happen to you.

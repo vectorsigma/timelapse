@@ -99,18 +99,20 @@ what you'll need for the 4K bitrates.
 
 ### Ogg Theora
 
-*n.b.:* Can't recommend this at the moment, ffmpeg's libtheora codec is completely fucking broken
-when using PNGs as input.  Better off re-encoding the MPEG4 into Theora. Boo, generation loss. :(
+*n.b.:* Use TIFF output if you care about Theora encoding.  TIFF inputs work fine, but PNG inputs
+result in horridly blocky and artifacted nonsense.
 
-`ffmpeg -pattern_type glob -i 'resized2k/*.png' -vcodec libtheora -q:v 7 -framerate 30 timelapse2k.ogg`
+*n.b.:* The Theora encoder doesn't seem to benefit from the `-threads` option, whereas the rest do.
+
+`ffmpeg -pattern_type glob -i 'resized2k/*.tif' -vcodec libtheora -threads $(nproc) -q:v 7 -framerate 30 timelapse2k.ogg`
 
 ### WebM/VP8
 
-`ffmpeg -pattern_type glob -i 'resized2k/*.png' -c:v libvpx -qmax 42 -qmin 10 -f webm -framerate 30 timelapse2k.webm`
+`ffmpeg -pattern_type glob -i 'resized2k/*.png' -c:v libvpx -threads $(nproc) -qmax 42 -qmin 10 -f webm -framerate 30 timelapse2k.webm`
 
 ### H.264 MP4
 
-`ffmpeg -pattern_type glob -i 'resized2k/*.png' -c:v libx264 -crf 25 -framerate 30 timelapse2k.mp4`
+`ffmpeg -pattern_type glob -i 'resized2k/*.png' -c:v libx264 -threads $(nproc) -crf 25 -framerate 30 timelapse2k.mp4`
 
 ### H.264 AVI
 
