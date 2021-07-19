@@ -108,7 +108,7 @@ result in horridly blocky and artifacted nonsense.
 
 ### WebM/VP8
 
-`ffmpeg -pattern_type glob -i 'resized2k/*.png' -c:v libvpx -threads $(nproc) -qmax 42 -qmin 10 -f webm -framerate 30 timelapse2k.webm`
+`ffmpeg -pattern_type glob -i 'resized2k/*.png' -c:v libvpx -threads $(nproc) -qmax 60 -qmin 20 -f webm -framerate 30 -b:v 8192k timelapse2k.webm`
 
 ### H.264 MP4
 
